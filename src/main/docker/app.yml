@@ -1,0 +1,15 @@
+version: '2'
+services:
+    mono-app:
+        image: mono
+        external_links:
+            - mono-postgresql:postgresql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/mono
+        ports:
+            - 8080:8080
+    mono-postgresql:
+        extends:
+            file: postgresql.yml
+            service: mono-postgresql
